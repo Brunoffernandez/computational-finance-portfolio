@@ -4,13 +4,13 @@ This repository contains Python implementations of numerical methods and simulat
 
 ## Projects Included
 
-### 1. Implied Volatility Solver (`src/implied_volatility_solver.py`)
+### 1. Implied Volatility Solver (`implied_volatility_solver.py`)
 Extracts the implied volatility from market data (SPX options) by reversing the Black-Scholes formula. 
 * **Data:** Processes a real-world CSV dataset of SPX option chains.
 * **Algorithms Used:** Implements both the **Bisection Method** and the **Newton-Raphson Method** to find the roots of the non-linear Black-Scholes equation.
 * **Analysis:** Compares the convergence and accuracy of both methods against market-quoted implied volatility, outputting visual comparisons using Matplotlib.
 
-### 2. Basket Option Monte Carlo Simulation (`src/basket_option_monte_carlo.py`)
+### 2. Basket Option Monte Carlo Simulation (`basket_option_monte_carlo.py`)
 Prices a Basket Call Option using Monte Carlo simulations under different probability measures to demonstrate variance reduction.
 * **Techniques:** Uses Cholesky decomposition to simulate correlated Geometric Brownian Motions (GBM) for multiple underlying assets.
 * **Variance Reduction:** Compares the standard risk-neutral measure (Q) with a change of numeraire measure (QS1).
