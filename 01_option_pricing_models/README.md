@@ -1,31 +1,36 @@
-# Quantitative Finance & Option Pricing Models
+# Quantitative Finance: Volatility Extraction and Monte Carlo Simulation
 
-This repository contains Python implementations of numerical methods and simulation techniques used in computational finance. The projects focus on option pricing, volatility surface extraction, and variance reduction techniques.
+This repository contains Python implementations of numerical methods used in computational finance. The project focuses on implied volatility extraction using root-finding algorithms and pricing multi-asset options using Monte Carlo simulations with variance reduction techniques.
 
-## Projects Included
+## Files in this Repository
 
-### 1. Implied Volatility Solver (`implied_volatility_solver.py`)
-Extracts the implied volatility from market data (SPX options) by reversing the Black-Scholes formula. 
-* **Data:** Processes a real-world CSV dataset of SPX option chains.
-* **Algorithms Used:** Implements both the **Bisection Method** and the **Newton-Raphson Method** to find the roots of the non-linear Black-Scholes equation.
-* **Analysis:** Compares the convergence and accuracy of both methods against market-quoted implied volatility, outputting visual comparisons using Matplotlib.
+### `implied_volatility_solver.py`
+This script extracts implied volatility from real-world market data by reversing the Black-Scholes formula.
+* **Data:** Processes S&P 500 (SPX) option chains from `spx_options_data.csv`.
+* **Algorithms:** Implements the **Bisection Method** and the **Newton-Raphson Method** to solve the non-linear Black-Scholes equation for $\sigma$.
+* **Analysis:** Calculates the "Vega" of the options and plots the implied volatility "smile"/curve across different strike prices to compare the convergence and accuracy of the numerical methods.
 
-### 2. Basket Option Monte Carlo Simulation (`basket_option_monte_carlo.py`)
-Prices a Basket Call Option using Monte Carlo simulations under different probability measures to demonstrate variance reduction.
-* **Techniques:** Uses Cholesky decomposition to simulate correlated Geometric Brownian Motions (GBM) for multiple underlying assets.
-* **Variance Reduction:** Compares the standard risk-neutral measure (Q) with a change of numeraire measure (QS1).
-* **Analysis:** Evaluates the standard error decay rates across various simulation path lengths ($10,000$ to $100,000$ paths), visually confirming the Central Limit Theorem convergence.
+### `basket_option_monte_carlo.py`
+This script prices a Basket Call Option (an option dependent on two underlying assets) using Monte Carlo simulations.
+* **Techniques:** Uses Cholesky decomposition to simulate correlated Geometric Brownian Motions (GBM) for the two underlying assets.
+* **Variance Reduction:** Computes prices under the standard risk-neutral measure (Q) and compares it with a change of numeraire measure (QS1).
+* **Analysis:** Simulates varying path lengths ($10,000$ to $100,000$ paths) and plots the standard error decay. It verifies the Central Limit Theorem by mapping the $1/\sqrt{M}$ convergence rate.
 
-## Technology Stack
-* **Python 3**
-* **NumPy & SciPy:** For statistical distributions, matrix operations, and vectorized math.
-* **Pandas:** For financial data ingestion and cleaning.
-* **Matplotlib:** For plotting convergence rates and volatility curves.
+### `spx_options_data.csv`
+The raw dataset containing S&P 500 option chain data (strike prices, midpoints, quoted implied volatilities) used by the volatility solver.
 
-## Documentation
-Detailed mathematical derivations and theoretical explanations for these implementations can be found in the `docs/` directory.
+### `Option_Pricing_and_Simulation_Report.pdf`
+A comprehensive technical report detailing the mathematical derivations, theoretical frameworks, and analysis of the results produced by the Python scripts.
+
+## Requirements
+To run the scripts, you will need Python 3 and the following scientific libraries:
+* `numpy`
+* `scipy`
+* `pandas`
+* `matplotlib`
 
 ## How to Run
-1. Clone the repository.
-2. Ensure you have the required libraries installed: `pip install numpy scipy pandas matplotlib`.
-3. Run the scripts directly from the `src/` directory.
+Ensure all files are in the same directory.
+1. Install dependencies: `pip install numpy scipy pandas matplotlib`
+2. Run the implied volatility solver: `python implied_volatility_solver.py`
+3. Run the Monte Carlo simulation: `python basket_option_monte_carlo.py`
