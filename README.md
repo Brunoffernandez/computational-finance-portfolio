@@ -26,6 +26,12 @@ This project prices a European basket call written on two underlyings — one lo
 * **Moment-matching approximations:** Fits log-normal (2 moments), shifted log-normal (3 moments) and **Johnson SU** (4 moments) distributions to the basket by matching closed-form basket moments (cross log-normal / non-central $\chi^2_0$), pricing analytically or by Gauss–Hermite quadrature.
 * **Two-dimensional COS method** (Ruijter & Oosterlee, 2012): Expands the joint density in a 2D cosine series using marginal characteristic functions, computes the non-separable payoff coefficients via a trapezoidal $C_1^{\top} P\, C_2$ product, and observes spectral convergence in the number of cosine terms $N$.
 
+### [4. American Option Pricing: Least-Squares Monte Carlo and Finite Differences](./04_american_options_lsmc_and_fd/)
+This project prices American put options with two complementary numerical methods and cross-validates them on a 20-configuration parameter grid $(S_0, \sigma, T)$.
+* **Longstaff–Schwartz LSMC:** Backward recursion of the optimal-stopping problem with cross-sectional regression of the continuation value on the first three **Laguerre polynomials** (as in Longstaff & Schwartz 2001). Includes a step-by-step reproduction of the paper's 8-path worked example and a full parameter sweep with 100k paths and antithetic variates.
+* **Finite Differences (FTCS):** Explicit forward-Euler scheme on a $\log$-price grid for the Black–Scholes PDE. The European put is validated against the closed-form price; the American extension imposes early exercise via $U \leftarrow \max(U, K - S)$ at every time slice.
+* **Cross-validation:** LSMC and FTCS American prices are placed side by side and their absolute gap is reported, together with the early-exercise premium $V_A - V_E$ from both methods.
+
 ## Core Skills & Technology Stack
 
 **Programming & Data Science:**
