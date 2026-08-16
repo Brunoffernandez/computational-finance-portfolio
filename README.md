@@ -20,6 +20,12 @@ This project implements highly advanced numerical techniques for probability den
 * **Tail Risk Estimation:** Estimates the 95th percentile of a multi-asset payoff distribution for a large basket of stocks.
 * **Importance Sampling:** Applies mean and variance shifts to the underlying sampling distribution (using Radon-Nikodym derivatives) to drastically accelerate convergence and reduce variance for rare-event tail risks.
 
+### [3. Multi-Asset Basket Option Pricing: Monte Carlo, Moment Matching and 2D COS](./03_multi_asset_pricing_methods/)
+This project prices a European basket call written on two underlyings — one log-normal (GBM) and, in the second setup, one square-root (CIR-type) diffusion — from three complementary angles.
+* **Monte Carlo with Euler–Maruyama:** Exact GBM simulation for the log-normal setup and a **full-truncation Euler–Maruyama** scheme for the CIR leg (needed because $\rho \neq 0$ blocks exact joint simulation). Isolates and fits the weak-convergence order of the scheme and the statistical $\mathcal{O}(1/\sqrt{M})$ decay.
+* **Moment-matching approximations:** Fits log-normal (2 moments), shifted log-normal (3 moments) and **Johnson SU** (4 moments) distributions to the basket by matching closed-form basket moments (cross log-normal / non-central $\chi^2_0$), pricing analytically or by Gauss–Hermite quadrature.
+* **Two-dimensional COS method** (Ruijter & Oosterlee, 2012): Expands the joint density in a 2D cosine series using marginal characteristic functions, computes the non-separable payoff coefficients via a trapezoidal $C_1^{\top} P\, C_2$ product, and observes spectral convergence in the number of cosine terms $N$.
+
 ## Core Skills & Technology Stack
 
 **Programming & Data Science:**
